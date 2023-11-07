@@ -1,0 +1,56 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Krusty Krab Escape</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <script src="js/phaser.min.js"></script>
+
+
+    <script src="src/Scene.js"></script>
+
+
+    
+    <script src="js/script.js"></script>
+  </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phaser JS Game</title>
+  </head>
+  <body>
+    <script src="phaser.min.js"></script>
+
+    <script>
+      // Define the Scene class
+      class Scene extends Phaser.Scene {
+        preload() {
+          this.load.image("scene-start", "assets/start.png");
+        }
+
+        async create() {
+          this.add.image(640, 360, "scene-start");
+        }
+      }
+
+      // Create a configuration object
+      const config = {
+        type: Phaser.AUTO,
+        width: 800,
+        height: 600,
+        scene: Scene,
+      };
+
+      // Create a new instance of Phaser
+      const game = new Phaser.Game(config);
+    </script>
+  </body>
+</html>
