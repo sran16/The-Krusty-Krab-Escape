@@ -35,3 +35,15 @@
 
 // // Create a new instance of Phaser
 // const game = new Phaser.Game(config);
+
+// Create a configuration object
+
+const config = {
+  type: Phaser.AUTO,
+  width: 800,
+  height: 600,
+  scene: Scene,
+};
+
+// Create a new instance of Phaser
+const game = new Phaser.Game(config);
