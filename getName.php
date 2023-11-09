@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 
 $host = 'localhost';
 $dbname = 'the-krusty-krab-escape';
@@ -23,4 +23,4 @@ try {
 $request = $pdo->query('SELECT name FROM test WHERE id = 1');
 $test = $request->fetch(PDO::FETCH_ASSOC);
 echo json_encode($test['name']);
-?> -->
+?>
