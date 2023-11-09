@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 
 
 ?>
@@ -20,36 +20,34 @@
 </html>
 <script>
 
-    function getName() {
-        fetch("getName.php")
-            .then((response) => {
-                if (!response) {
-                    throw new Error("Something went wrong !");
-                }
-                let parsedResponse = response.json();
-                return parsedResponse
-            })
-            .then((data) => {
-                console.log(data);
-                return data;
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }
-    getName();
-    function createNewName(name) {
+    // function getTestName() {
+    //     fetch("getName.php")
+    //         .then((response) => {
+    //             if (!response.ok) {
+    //                 throw new Error("Something went wrong !");
+    //             }
+    //             let parsedResponse = response.json();
+    //             return parsedResponse
+    //         })
+    //         .then((data) => {
+    //             console.log(data);
+    //             return data;
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         });
+    // }
+    // getTestName();
+    function createNewName(testName) {
         let url = "createNewName.php";
-        let formData = new formData();
-        formData.append("newLineName", name);
+        let formData = new FormData();
+        formData.append("name", testName);
         fetch(url, { method: 'post', body: formData })
             .then((response) => {
                 console.log(response.text);
                 return response.text
             })
-            .then(function (body)) {
-            console.log(body);
-        }
     }
-    createNewName("Nouveau name");
-</script> -->
+    const unTexte = "narnar";
+    createNewName(unTexte);
+</script>

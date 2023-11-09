@@ -22,11 +22,12 @@ try {
 }
 if (isset($_POST["name"])) {
     $name = $_POST["name"];
-    $request = $pdo->query('INSERT INTO test (name) VALUES ('. $newName .') ');
-    $test = $request->fetch(PDO::FETCH_ASSOC);
-    echo "New Name:" . $newName . "";
+    $request = $pdo->prepare('INSERT INTO test (name) VALUES (:tempVariable)');
+    $request->bindParam(':tempVariable', $name, PDO::PARAM_STR);
+    $request->execute();
+
 } else {
-    echo "C KC ";
+    echo "C KC";
 }
 
 // echo json_encode($test['name']);
