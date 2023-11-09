@@ -1,8 +1,8 @@
 class Scene extends Phaser.Scene {
-  
+
   preload() {
     new Preloader(this);
-    
+
   }
    
     async create() {
@@ -29,13 +29,8 @@ class Scene extends Phaser.Scene {
         // onComplete: () => {
         //   this.scene.start('SceneFinale');  
         // }
-      });
-
-       
-       
+      });  
     }
-    
-    
   }
   
 

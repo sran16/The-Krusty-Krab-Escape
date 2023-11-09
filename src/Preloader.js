@@ -19,6 +19,5 @@ class Preloader {
 
   // end text
   scene.load.image("end-text", "assets/finale/end-text.png");
-
   }
 }
