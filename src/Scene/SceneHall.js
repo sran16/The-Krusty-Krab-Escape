@@ -5,20 +5,27 @@ export default class SceneHall extends Phaser.Scene {
   platforms;
   burgers;
   player;
-  obstacle;
+  obstacleHall;
   messageWin;
   isCollided = false;
+  obstacleHallTween;
+  obstacleHallSpeed = 100;
+  isPlayerDead = false;
+  // constructor() {
+  //   super({ key: "SceneKitchen" });
+  // }
   preload() {
     new Preloader(this);
   }
 
   async create() {
-    // const delayInMilliseconds = 60000;
-    const SceneHall = this.add.image(720, 415, "background-scene-un");
-    SceneHall.setScale(1.3);
+    const background = this.add.image(720, 400, "background-scene-un");
+    background.setScale(1.2);
 
-    const obstacleHall = this.add.image(920, 615, "obstacle-scene-un");
-    obstacleHall.setScale(0.4);
+    // add obstacleHall
+
+    this.obstacleHall = this.add.image(800, 600, "obstacle-scene-un");
+    this.obstacleHall.setScale(0.4);
     // add platforms
     this.platforms = this.physics.add.staticGroup();
 
@@ -30,6 +37,9 @@ export default class SceneHall extends Phaser.Scene {
     this.player.setScale(-1, 1);
     this.player.setBounce(0.2);
     this.player.setCollideWorldBounds(true);
+
+    this.physics.add.existing(this.player);
+    this.physics.add.existing(this.obstacleHall);
 
     this.anims.create({
       key: "left",
@@ -75,6 +85,7 @@ export default class SceneHall extends Phaser.Scene {
 
     this.physics.add.collider(this.player, this.platforms);
     this.physics.add.collider(this.burgers, this.platforms);
+    this.physics.add.collider(this.obstacleHall, this.platforms);
 
     this.physics.add.overlap(
       this.player,
@@ -86,12 +97,22 @@ export default class SceneHall extends Phaser.Scene {
     this.platforms.children.iterate((platform) => {
       platform.alpha = 0;
     });
-    // const timerEvent = this.time.addEvent({
-    //   delay: delayInMilliseconds,
-    //   callback: this.delayedAction,
-    //   callbackScope: this,
-    //   loop: false,
-    // });
+    // obstacleHall mouvement
+    this.obstacleHallTween = this.tweens.add({
+      targets: this.obstacleHall,
+      y: 500,
+      ease: "Linear",
+      duration: 1000,
+      yoyo: true,
+      repeat: -1,
+    });
+    this.physics.add.collider(
+      this.player,
+      this.obstacleHall,
+      this.playerHitobstacleHall,
+      null,
+      this
+    );
   }
   update() {
     if (this.cursors.left.isDown) {
@@ -115,27 +136,51 @@ export default class SceneHall extends Phaser.Scene {
     // if (this.score >= 40) {
     //   this.messageWin.setText(`Scene 2 `);
     //   // this.delayedAction();
-    //   this.scene.start("SceneKitchen");
+    //   this.scene.start("SceneFinale");
     // }
-    if (this.score >= 40)
+  }
+  playerHitobstacleHall() {
+    if (!this.isPlayerDead) {
+      this.isPlayerDead = true;
+      this.player.anims.stop();
+      this.player.setTexture("character_collision");
+      // this.player.setFrame(9);
+
       this.time.delayedCall(1500, () => {
-        this.scoreText.setText(`Burger: ${this.score}`);
-        this.scene.start("SceneKitchen");
+        // Restart the scene after a delay
+        this.scene.restart();
       });
+    } else {
+      this.score >= 40;
+      {
+        this.scene.start("SceneKitchen");
+      }
+    }
   }
 
   collectBurgers(player, burgers) {
     burgers.disableBody(true, true);
     this.score += 10;
     this.scoreText.setText(`Burger: ${this.score}`);
-    console.log("SaaS");
+    console.log("Poil");
+    if (this.score >= 40) {
+      console.log("Turbo poil");
+      this.time.delayedCall(1500, () => {
+        this.scene.start("SceneFinale");
+      });
+    }
   }
-  // delayedAction() {
-  //   // This function will be called after the delay
-  //   console.log("Delayed action executed!");
-  // }
 }
-function handleCollision() {
-  isCollided = true;
-  player.setTexture("character_collision");
-}
+console.log("SaaS");
+
+    this.anims.create({
+      key: "turn",
+      frames: [{ key: "plankton", frame: 4 }],
+      frameRate: 20,
+    });
+
+// const SceneHall = this.add.image(720, 415, "background-scene-un");
+//     SceneHall.setScale(1.3);
+
+//     const obstacleHall = this.add.image(920, 615, "obstacle-scene-un");
+//     obstacleHall.setScale(0.4);
