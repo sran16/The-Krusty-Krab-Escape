@@ -1,87 +1,39 @@
-<?php
-
-$host = 'localhost';
-$dbname = 'bonjour';
-$username = 'root';
-$password = 'root';
-
-try {
-
-  $pdo = new PDO(
-    'mysql:host=' . $host . ';dbname=' . $dbname,
-    $username,
-    $password,
-    array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING, PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8')
-  );
-
-  // echo "Connected to $dbname on $host with success";
-
-} catch (PDOException $e) {
-
-  die("Can't connect to $dbname :" . $e->getMessage());
-}
-
-
-$request = $pdo->query('SELECT name FROM ` au revoir` WHERE id = 1');
-$sauce = $request->fetch(PDO::FETCH_ASSOC);
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Krusty Krab Escape</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 
 <body>
-  <div class="uneClasse">Poil</div>
+  <!-- <div class="container">
+    <div id="background"></div>
+    <a href="src/Scene/SceneHall.js"> <div id="button"></div> </a>
+    <div id="startText"></div>
+  </div>   -->
+
+  <script src="phaser.min.js"></script>
+  <!-- Scene -->
+  <!-- <script src="src/Scene/Scene.js"></script> -->
+  <script type="module" src="./src/Scene/SceneHall.js"></script>
+  <script type="module" src="./src/Scene/SceneFinale.js"></script>
+  <script type="module" src="./src/Scene/SceneKitchen.js"></script>
+  <!-- Preloader -->
+  <script src="src/Preloader.js"></script>
+  <!-- test -->
+  <!-- <script src="src/Scene/toto.js"></script> -->
+  <!-- Player -->
+  <!-- <script type="module" src="src/Player.js"> -->
+  <!-- <script type="module" src="src/obstacle.js"></script> -->
+
+  <script type="module" src="script.js"></script>
 </body>
 
 </html>
-
-<script>
-
-  function getSauceName() {
-    fetch("getSauceName.php")
-      .then((response) => {
-        // Before parsing (i.e. decoding) the JSON data
-        if (!response.ok) {
-          // check for any errors.
-          // In case of an error, throw.
-          throw new Error("Something went wrong!");
-        }
-
-        let parsedResponse = response.json();
-        return parsedResponse // Parse the JSON data.
-      })
-      .then((data) => {
-        // This is where you handle what to do with the response.
-        console.log(data);
-        return data;
-      })
-      .catch((error) => {
-        // This is where you handle errors.
-      });
-  }
-
-  getSauceName();
-
-
-  function createNewSauce(sauceName) {
-    let url = "createNewSauce.php";
-    let formData = new FormData();
-    formData.append("name", sauceName);
-    fetch(url, { method: 'POST', body: formData })
-      .then((response) => {
-        // Show Response Text
-        console.log(response.text);
-        return response.text
-      })
-  }
-  const unTexte = "na^$kejenkie";
-  createNewSauce(unTexte);
-
-
-</script>
