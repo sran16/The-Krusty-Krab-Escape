@@ -173,12 +173,6 @@ export default class SceneHall extends Phaser.Scene {
 }
 console.log("SaaS");
 
-    this.anims.create({
-      key: "turn",
-      frames: [{ key: "plankton", frame: 4 }],
-      frameRate: 20,
-    });
-
 // const SceneHall = this.add.image(720, 415, "background-scene-un");
 //     SceneHall.setScale(1.3);
 
