@@ -1,41 +1,50 @@
-// class Player extends Phaser.Physics.Arcade.Sprite {
-//   constructor(scene, x, y) {
-//     super(scene, x, y, "plankton");
-
-//     // Configure the properties of the sprite.
-//     this.setSize(32, 32);
-//     this.setBounce(0.2);
-//     this.setGravityY(300);
-
-//     // Add the sprite to the scene.
+// export default class Player extends Phaser.Physics.Arcade.Sprite {
+//   constructor(scene, x, y, texture) {
+//     super(scene, x, y, texture);
 //     scene.add.existing(this);
+//     scene.physics.add.existing(this);
 
-//     // Create an animation named "run".
-//     this.scene.anims.create({
-//       key: "run",
-//       frames: this.scene.anims.generateFrameNumbers("plankton", {
-//         start: 0,
-//         end: 3,
-//       }),
-//       frameRate: 10,
-//       repeat: -1, // -1 means it will loop forever
+//     this.setScale(-1, 1);
+//     this.setBounce(0.2);
+//     this.setCollideWorldBounds(true);
+
+//     scene.anims.create({
+//       key: "left",
+//       frames: scene.anims.generateFrameNumbers(texture, { start: 0, end: 3 }),
+//       frameRate: 20,
+//       repeat: -1,
+//     });
+
+//     scene.anims.create({
+//       key: "turn",
+//       frames: [{ key: texture, frame: 4 }],
+//       frameRate: 20,
+//     });
+
+//     scene.anims.create({
+//       key: "right",
+//       frames: scene.anims.generateFrameNumbers(texture, { start: 5, end: 8 }),
+//       frameRate: 20,
+//       repeat: -1,
 //     });
 //   }
 
-//   update() {
-//     // Move the sprite based on its inputs.
-//     if (this.scene.input.keyboard.isDown("up")) {
-//       this.body.velocity.y = -500;
-//     } else if (this.scene.input.keyboard.isDown("down")) {
-//       this.body.velocity.y = 500;
+//   update(cursors) {
+//     if (cursors.left.isDown) {
+//       this.setVelocityX(-160);
+//       this.setScale(1, 1);
+//       this.anims.play("left", true);
+//     } else if (cursors.right.isDown) {
+//       this.setVelocityX(160);
+//       this.setScale(-1, 1);
+//       this.anims.play("right", true);
+//     } else {
+//       this.setVelocityX(0);
+//       this.anims.play("turn");
 //     }
 
-//     // Check if the sprite is in collision with an obstacle.
-//     if (this.collidesWith(this.scene.obstacles)) {
-//       this.body.velocity.y = 0;
+//     if (cursors.up.isDown && this.body.touching.down) {
+//       this.setVelocityY(-330);
 //     }
-
-//     // Play the animation "run".
-//     this.play("run");
 //   }
 // }

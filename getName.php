@@ -20,7 +20,7 @@ try {
     die("Can't connect to $dbname :" . $e->getMessage());
 
 }
-$request = $pdo->query('SELECT name FROM test WHERE id = 1');
+$request = $pdo->query('SELECT name FROM test WHERE id = [UN TRUC ENVOYE DU FRONT]');
 $test = $request->fetch(PDO::FETCH_ASSOC);
 echo json_encode($test['name']);
 ?>
