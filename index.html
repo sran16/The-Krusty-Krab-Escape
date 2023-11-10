@@ -1,38 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Phaser JS Game</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <title>The Krusty Krab Escape</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Accueil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
+    <div class="container">
+      <h1 class="gameName">The Krusty Krab Escape</h1>
+      <img class="background" src="img/scene-start.png" alt="Background" />
 
- 
- <!-- <div class="container">
-    <div id="background"></div>
-    <a href="src/Scene/SceneHall.js"> <div id="button"></div> </a>
-    <div id="startText"></div>
-  </div>   -->
+      <a><button class="bouton">START</button> </a>
+      <img class="introduction" src="img/introduction.png" alt="" />
 
-    <script src="phaser.min.js"></script>
-    <script src="src/Scene/Scene.js"></script>
-    <script src="src/Scene/SceneHall.js"></script>
-    <script src="src/Scene/SceneFinale.js"></script>
-    <script src="src/Preloader.js"></script>
-    <script src="src/Scene/SceneKitchen.js"></script>
-    <script src="src/Scene/toto.js"></script>
-    <script src="src/Player.js"></script>
+      <a><button class="buttonNext">Continuer</button></a>
 
-    <script src="script.js"></script>
+      <img class="gameRules" src="img/gameRules.png" alt="" />
+    </div>
+    <a href="index.php"><button class="buttonPlay">Jouer</button></a>
+
+    <script src="intro.js"></script>
   </body>
 </html>
-
-
- 
