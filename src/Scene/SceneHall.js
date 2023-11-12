@@ -122,11 +122,11 @@ export default class SceneHall extends Phaser.Scene {
 
     this.scoreText = this.add.text(16, 16, "Burger: 0", {
       fontSize: "32px",
-      fill: "#000",
+      fill: "white",
     });
     this.messageWin = this.add.text(200, 400, "", {
       fontSize: "100px",
-      fill: "#000",
+      fill: "white",
     });
     // Set up physics collisions and overlaps
     this.physics.add.collider(this.player, this.platforms);
