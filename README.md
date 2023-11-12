@@ -1,11 +1,15 @@
 # The-Krusty-Krab-Escape
+Bonjour ! 
+
+Suivez les instructions suivantes afin de pouvoir jouer au jeu !
+
 - Télécharger le dossier disponible sur le GitHub en cliquant sur « Code » -> « Download ZIP » 
 
 - Mettre ce dossier dans le dossier « htdocs » de Mamp 
 
 - Lancer Mamp 
 
-- Aller sur le localhost et choisir le dossier « The Krusty Krab Escape » 
+- Aller sur le localhost et choisir le dossier « The-Krusty-Krab-Escape-main » 
 
 - Jouer !
 
