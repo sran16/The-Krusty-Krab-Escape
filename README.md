@@ -1,1 +1,13 @@
 # The-Krusty-Krab-Escape
+- Télécharger le dossier disponible sur le GitHub en cliquant sur « Code » -> « Download ZIP » 
+
+- Mettre ce dossier dans le dossier « htdocs » de Mamp 
+
+- Lancer Mamp 
+
+- Aller sur le localhost et choisir le dossier « The Krusty Krab Escape » 
+
+- Jouer !
+
+
+- Tip : Afin d’augmenter vos chance de gagner le niveau restez  appuyé sur la flèche du haut et de droite en même temps ! ;)
