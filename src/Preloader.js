@@ -1,8 +1,5 @@
 class Preloader {
   constructor(scene) {
-    // home page + button start
-    // scene.load.image("button-start", "assets/button-start.png");
-
     scene.load.image("scene-start", "assets/scene-start.png");
 
     // all obstacle
@@ -13,18 +10,12 @@ class Preloader {
     );
 
     // all scenes
-    scene.load.image(
-      "background-scene-un",
-      "assets/hall/background-scene-un.png"
-    );
+    scene.load.image("background-scene-un", "assets/hall/hall.png");
     scene.load.image(
       "background-scene-deux",
       "assets/kitchen/background-scene-deux.png"
     );
-    scene.load.image(
-      "background-scene-finale",
-      "assets/finale/scene-finale.png"
-    );
+    scene.load.image("background-scene-finale", "assets/finale/finale.png");
 
     //  introduction
     scene.load.image("start-text", "assets/start-text.png");
@@ -42,6 +33,8 @@ class Preloader {
       "character_collision",
       "assets/kitchen/crushed-plankton.png"
     );
+    // plankton finale
+    scene.load.image("plankton-f", "assets/finale/plankton-final.png");
 
     // Platforms
     scene.load.image("ground", "assets/platform.png");

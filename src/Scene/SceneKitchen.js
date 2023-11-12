@@ -1,5 +1,7 @@
 export default class SceneKitchen extends Phaser.Scene {
   scoreText;
+  sceneSprite;
+  sceneObs;
   score = 0;
   cursors;
   platforms;
@@ -12,14 +14,36 @@ export default class SceneKitchen extends Phaser.Scene {
   obstacleSpeed = 100;
   isPlayerDead = false;
   constructor() {
+    // Constructor to set the scene key
     super({ key: "SceneKitchen" });
   }
+  // Preload assets and fetch scene data by ID
   preload() {
+    function getSceneById(Id) {
+      let url = "getSceneId.php?id=" + Id;
+      fetch(url, { method: "GET" })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Something went wrong!");
+          }
+
+          let parsedResponse = response.json();
+          return parsedResponse;
+        })
+        .then((data) => {
+          console.log(data);
+          sceneSprite = data;
+          sceneObs = data;
+          return data;
+        })
+        .catch((error) => {});
+    }
+    getSceneById(2);
     new Preloader(this);
   }
-
+  // Create the scene
   async create() {
-    const background = this.add.image(720, 400, "background-scene-deux");
+    const background = this.add.image(768, 400, "background-scene-deux");
     background.setScale(1.2);
 
     // add obstacle
@@ -131,44 +155,24 @@ export default class SceneKitchen extends Phaser.Scene {
     }
 
     if (this.cursors.up.isDown && this.player.body.touching.down) {
-      this.player.setVelocityY(-330);
+      this.player.setVelocityY(-390);
     }
-    // if (this.score >= 40) {
-    //   this.messageWin.setText(`Scene 2 `);
-    //   // this.delayedAction();
-    //   this.scene.start("SceneFinale");
-    // }
   }
-  // playerHitObstacle() {
-  //   if (!this.isPlayerDead) {
-  //     this.isPlayerDead = true;
-  //     this.player.anims.stop();
-  //     this.player.setTexture("character_collision");
-  //     // this.player.setFrame(9);
+  // Function to handle player collision with obstacle
 
-  //     this.time.delayedCall(1500, () => {
-  //       // Restart the scene after a delay
-  //       this.scene.restart();
-  //     });
-  //   } else {
-  //     this.score >= 40;
-  //     {
-  //       this.scene.start("SceneFinale");
-  //     }
-  //   }
-  // }
   playerHitObstacle() {
-    if (!this.isPlayerDead) {
-      // Si le joueur est mort, redémarrer la scène
-      this.isPlayerDead = true;
-      this.player.anims.stop();
-      this.player.setTexture("character_collision");
-
-      this.time.delayedCall(1500, () => {
-        this.scene.restart();
-      });
-    }
+    !this.isPlayerDead;
+    this.isPlayerDead = true;
+    this.player.setTint(0xff0000);
+    this.physics.pause();
+    this.time.delayedCall(100, () => {
+      this.score = 0;
+      this.scene.restart();
+      console.log("yoww");
+    });
   }
+
+  // Function to handle collecting burgers and updating score
 
   collectBurgers(player, burgers) {
     burgers.disableBody(true, true);
@@ -177,10 +181,10 @@ export default class SceneKitchen extends Phaser.Scene {
     console.log("Vadim Blyat");
     if (this.score >= 40) {
       console.log("Turbo poil");
-      this.time.delayedCall(1500, () => {
+      this.time.delayedCall(800, () => {
         this.scene.start("SceneFinale");
       });
     }
   }
 }
-console.log("SaaS");
+console.log("please mamp");

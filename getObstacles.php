@@ -24,7 +24,7 @@ try {
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
     // Prepare and execute a query to fetch scene data based on the provided id
-    $request = $pdo->prepare('SELECT * FROM scene WHERE id=:id');
+    $request = $pdo->prepare('SELECT * FROM obstacles WHERE id=:id');
     $request->bindParam(':id', $id, PDO::PARAM_STR);
     $scene = $request->execute();
     $scene = $request->fetch(PDO::FETCH_ASSOC);
@@ -33,8 +33,8 @@ if (isset($_GET["id"])) {
     echo "Param not found";
 }
 
+
+
 // Output the scene data in JSON format
-
-echo json_encode($scene['sprite']);
-
+echo json_encode($obstacles);
 ?>
